@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var pokemonsName = [PokemonResults]()
+    
     private let pokemonCell = "PokemonCell"
     private let pokemonsTableView: UITableView = {
         let tableView = UITableView()
@@ -25,11 +27,20 @@ class ViewController: UIViewController {
         setDelegaties()
         
         pokemonsTableView.register(PokemonCell.self, forCellReuseIdentifier: pokemonCell)
+        
+        NetworkManager.getPokemonName { name in
+            self.pokemonsName = name
+            self.pokemonsTableView.reloadData()
+            print("You get pokemons name")
+        } failure: {
+            print("You don't get pokemons name")
+        }
     }
-    
 }
+
 private extension ViewController {
     func setupViews() {
+        view.backgroundColor = .white
         pokemonsTableView.backgroundColor = .blue
         view.addSubview(pokemonsTableView)
         
@@ -59,11 +70,12 @@ extension ViewController: UITableViewDelegate {
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return pokemonsName.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: pokemonCell, for: indexPath) as! PokemonCell
+        cell.setupCell(name: pokemonsName[indexPath.row])
         return cell
     }
 }

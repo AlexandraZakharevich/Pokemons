@@ -23,6 +23,8 @@ class PokemonCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
         setupConstraints()
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,6 +37,13 @@ class PokemonCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+}
+
+extension PokemonCell {
+    func setupCell(name: PokemonResults) {
+        guard let name = name.name else {return}
+        pokemonNameLabel.text = "\(name)"
+    }
 }
 
 private extension PokemonCell {
