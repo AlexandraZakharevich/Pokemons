@@ -10,10 +10,14 @@ import Moya
 
 enum BackendAPI {
     case getPokemonName
+    case getPokemonDetails(id: Int)
 }
+
+var pokemons = [PokemonResults]()
 
 extension BackendAPI: TargetType {
 // https://pokeapi.co/api/v2/pokemon
+// https://pokeapi.co/api/v2/pokemon/1/
     var baseURL: URL {
         return URL(string: "https://pokeapi.co")!
     }
@@ -22,13 +26,17 @@ extension BackendAPI: TargetType {
         switch self {
         case .getPokemonName:
             return "/api/v2/pokemon"
+        case .getPokemonDetails(let id):
+            return "/api/v2/pokemon/\(id + 1)"
         }
     }
     
     var method: Moya.Method {
-        return .get
+        switch self {
+        case .getPokemonName, .getPokemonDetails:
+            return .get
+        }
     }
-    
     var sampleData: Data {
         return Data()
     }
@@ -43,7 +51,7 @@ extension BackendAPI: TargetType {
     
     var encoding: ParameterEncoding {
         switch self {
-        case .getPokemonName:
+        case .getPokemonName, .getPokemonDetails:
             return URLEncoding.queryString
         }
     }

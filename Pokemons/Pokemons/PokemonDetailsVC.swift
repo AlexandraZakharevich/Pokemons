@@ -11,19 +11,34 @@ class PokemonDetailsVC: UIViewController {
     
     private let pokemonImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "arrow")
+//        imageView.image = UIImage(named: "arrow")
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 75
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private let pokemonName = PokemonDetailsLabel(text: "Name:")
-    private let typeEGGrass = PokemonDetailsLabel(text: "Type:")
-    private let pokemonWeight = PokemonDetailsLabel(text: "Weight:")
-    private let pokemonHeight = PokemonDetailsLabel(text: "Height: cm")
+//    private let pokemonName = PokemonDetailsLabel()
+    private let typeEGGrass = PokemonDetailsLabel()
+    private let pokemonWeight = PokemonDetailsLabel()
+    private let pokemonHeight = PokemonDetailsLabel()
     
-    private let returnButton: UIButton = {
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .black
+        return label
+    }()
+    
+    private let pokemonName: PokemonDetailsLabel = {
+        let label = PokemonDetailsLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .black
+        return label
+    }()
+    
+    
+    private lazy var returnButton: UIButton = {
         let button = UIButton()
         button.layer.borderColor = UIColor.systemBlue.cgColor
         button.layer.borderWidth = 2.5
@@ -32,7 +47,7 @@ class PokemonDetailsVC: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 17)
         button.layer.cornerRadius = 25
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(returnButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(returnButtonTapped), for: .allTouchEvents)
         return button
     }()
 
@@ -41,9 +56,23 @@ class PokemonDetailsVC: UIViewController {
         setupViews()
         setupConstraints()
         view.backgroundColor = .white
-    }
     
-    @objc func returnButtonTapped() {
+    }
+}
+
+extension PokemonDetailsVC {
+    func setupDetails(details: PokemonDetails) {
+        guard let name = details.name,
+              let weight = details.weight,
+              let height = details.height,
+              let imageURLString = details.sprites?.front_default,
+              let  types = details.types.first
+        else {return}
+        pokemonName.text = "Name: \(name)"
+        pokemonWeight.text = "Weight: \(weight) kg"
+        pokemonHeight.text = "Height: \(height) cm"
+        pokemonImage.setImageFromUrl(imageURLString)
+        typeEGGrass.text = "\(types)"
         
     }
 }
@@ -57,6 +86,18 @@ private extension PokemonDetailsVC {
         view.addSubview(pokemonWeight)
         view.addSubview(pokemonHeight)
         view.addSubview(returnButton)
+//        view.addSubview(titleLabel)
+//        NSLayoutConstraint.activate([
+//            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//        ])
+        
+    }
+    
+    @objc func returnButtonTapped() {
+        self.navigationController?.popToRootViewController(animated: true)
+//        dismiss(animated: true)
+        print("push back")
     }
     
     func setupConstraints() {
@@ -66,7 +107,7 @@ private extension PokemonDetailsVC {
             pokemonImage.heightAnchor.constraint(equalToConstant: 150),
             pokemonImage.widthAnchor.constraint(equalToConstant: 150),
             
-            pokemonName.topAnchor.constraint(equalTo: pokemonImage.bottomAnchor, constant:  50),
+            pokemonName.topAnchor.constraint(equalTo: view.topAnchor, constant:  50),
             pokemonName.heightAnchor.constraint(equalToConstant: 30),
             pokemonName.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
