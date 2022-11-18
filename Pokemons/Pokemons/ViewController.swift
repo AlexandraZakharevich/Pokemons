@@ -40,6 +40,7 @@ class ViewController: UIViewController {
             print("You get pokemons name")
             
         } failure: {
+            self.codeStatusIsInvalid()
             print("You don't get pokemons name")
         }
         
@@ -62,6 +63,13 @@ private extension ViewController {
     func setDelegaties() {
         pokemonsTableView.delegate = self
         pokemonsTableView.dataSource = self
+    }
+    
+    func codeStatusIsInvalid() {
+        let alert = UIAlertController(title: "Error", message: "Check your connection", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        self.present(alert, animated: true)
     }
     
     func setupConstraints() {
@@ -122,7 +130,9 @@ extension ViewController: UITableViewDataSource {
             detailsVC.setupDetails(details: details)
             print("You get pokemons details")
         }) {
+            self.codeStatusIsInvalid()
             print("You don't get pokemons details")
         }
     }
 }
+
