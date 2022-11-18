@@ -55,9 +55,8 @@ class ViewController: UIViewController {
 private extension ViewController {
     func setupViews() {
         view.backgroundColor = .white
-        pokemonsTableView.backgroundColor = .blue
+        pokemonsTableView.separatorStyle = .none
         view.addSubview(pokemonsTableView)
-        
     }
     
     func setDelegaties() {
@@ -91,6 +90,7 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: pokemonCell, for: indexPath) as! PokemonCell
         cell.setupCell(name: pokemonsName[indexPath.row])
+        cell.selectionStyle = .none
 //        cell.setupCell(name: displayPokemons[indexPath.row])
         return cell
     }
@@ -124,11 +124,5 @@ extension ViewController: UITableViewDataSource {
         }) {
             print("You don't get pokemons details")
         }
-            
-            
-        
-//        navigationController?.pushViewController(detailsVC, animated: true)
-//        present(detailsVC, animated: true)
-        print("Select row")
     }
 }

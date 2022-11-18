@@ -13,11 +13,7 @@ enum BackendAPI {
     case getPokemonDetails(id: Int)
 }
 
-var pokemons = [PokemonResults]()
-
 extension BackendAPI: TargetType {
-// https://pokeapi.co/api/v2/pokemon
-// https://pokeapi.co/api/v2/pokemon/1/
     var baseURL: URL {
         return URL(string: "https://pokeapi.co")!
     }
@@ -55,16 +51,5 @@ extension BackendAPI: TargetType {
             return URLEncoding.queryString
         }
     }
-    
-    //    var params: [String: Any]? {
-    //        var params = [String: Any]()
-    //
-    //        switch self {
-    //        case .getPokemonName:
-    //            params["results"] = "name"
-    //        }
-    //    }
-    
-    
 }
     

@@ -13,7 +13,6 @@ class PokemonDetails: Mappable {
     var weight: Int?
     var height: Int?
     var sprites: Sprites?
-//    var front_default: String?
     var types = [Types]()
     
     required init?(map: ObjectMapper.Map) {
@@ -27,18 +26,4 @@ class PokemonDetails: Mappable {
         types                 <- map["types"]
         sprites               <- map["sprites"]
     }
-}
-
-class Sprites: Mappable {
-
-    var front_default: String?
-    
-    required init?(map: ObjectMapper.Map) {
-        mapping(map: map)
-    }
-    
-    func mapping(map: ObjectMapper.Map) {
-        front_default         <- map["front_default"]
-    }
-
 }

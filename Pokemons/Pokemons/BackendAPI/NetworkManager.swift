@@ -38,7 +38,13 @@ class NetworkManager {
         provider.request(.getPokemonDetails(id: id)) { result in
             switch result {
             case .success(let response):
-                guard let pokemon = try? response.mapObject(PokemonDetails.self) else {return}
+                guard let pokemon = try? response.mapObject(PokemonDetails.self)
+                
+                else {
+                    failure?()
+                    print("Не удалось распарсить детали покемона")
+                    return
+                }
                 print("Удалось распарсить детали покемона")
                 success?(pokemon)
             case .failure(_):
