@@ -9,13 +9,15 @@ import Foundation
 import ObjectMapper
 
 class Types: Mappable {
-    var types: [PokemonType]?
+    var slot: Int?
+    var type: PokemonType?
     
     required init?(map: ObjectMapper.Map) {
         mapping(map: map)
     }
     
     func mapping(map: ObjectMapper.Map) {
-        types        <- map["types"]
+        slot        <- map["slot"]
+        type        <- map["type"]
     }
 }

@@ -69,7 +69,6 @@ class PokemonDetailsVC: UIViewController {
         setupConstraints()
         view.backgroundColor = .white
         navigationItem.hidesBackButton = true
-    
     }
 }
 
@@ -79,14 +78,13 @@ extension PokemonDetailsVC {
               let weight = details.weight,
               let height = details.height,
               let imageURLString = details.sprites?.front_default,
-              let types = details.types.first
+              let types = details.types.first?.type?.name
         else {return}
         pokemonImage.setImageFromUrl(imageURLString)
         pokemonName.text = "Name: \(name)"
         typeLabel.text = "Type: \(types)"
-        pokemonWeight.text = "Weight: \(weight) kg"
+        pokemonWeight.text = "Weight: \(weight)  kg"
         pokemonHeight.text = "Height: \(height) cm"
-        
     }
 }
 
@@ -114,15 +112,15 @@ private extension PokemonDetailsVC {
             pokemonName.topAnchor.constraint(equalTo: pokemonImage.bottomAnchor, constant:  25),
             pokemonName.heightAnchor.constraint(equalToConstant: 30),
             pokemonName.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//
+
             typeLabel.topAnchor.constraint(equalTo: pokemonName.bottomAnchor, constant: 20),
             typeLabel.heightAnchor.constraint(equalToConstant: 30),
             typeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//
+
             pokemonWeight.topAnchor.constraint(equalTo: typeLabel.bottomAnchor, constant: 20),
             pokemonWeight.heightAnchor.constraint(equalToConstant: 30),
             pokemonWeight.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//
+
             pokemonHeight.topAnchor.constraint(equalTo: pokemonWeight.bottomAnchor, constant: 20),
             pokemonHeight.heightAnchor.constraint(equalToConstant: 30),
             pokemonHeight.centerXAnchor.constraint(equalTo: view.centerXAnchor),

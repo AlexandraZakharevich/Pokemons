@@ -125,7 +125,7 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailsVC = PokemonDetailsVC()
-        NetworkManager.getPokemonDetails(id: indexPath.row, success: { [weak self]  details in
+        NetworkManager.getPokemonDetails(id: indexPath.row, success: { [weak self]  details  in
             self?.navigationController?.pushViewController(detailsVC, animated: true)
             detailsVC.setupDetails(details: details)
             print("You get pokemons details")

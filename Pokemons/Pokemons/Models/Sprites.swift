@@ -9,7 +9,6 @@ import Foundation
 import ObjectMapper
 
 class Sprites: Mappable {
-
     var front_default: String?
     
     required init?(map: ObjectMapper.Map) {

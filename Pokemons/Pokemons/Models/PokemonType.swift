@@ -9,19 +9,8 @@ import Foundation
 import ObjectMapper
 
 class PokemonType: Mappable {
-    var type: TypeName?
-    
-    required init?(map: ObjectMapper.Map) {
-        mapping(map: map)
-    }
-    
-    func mapping(map: ObjectMapper.Map) {
-        type      <- map["type"]
-    }
-}
-
-class TypeName: Mappable {
     var name: String?
+    var url: String?
     
     required init?(map: ObjectMapper.Map) {
         mapping(map: map)
@@ -29,5 +18,6 @@ class TypeName: Mappable {
     
     func mapping(map: ObjectMapper.Map) {
         name      <- map["name"]
+        url       <- map["url"]
     }
 }
