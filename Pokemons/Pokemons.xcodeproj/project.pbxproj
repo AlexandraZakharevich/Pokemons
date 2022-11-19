@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0523A1DC2928DAE800879250 /* RealmPokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523A1DB2928DAE800879250 /* RealmPokemonModel.swift */; };
+		0523A1DE2928DDE600879250 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523A1DD2928DDE600879250 /* RealmManager.swift */; };
 		053DA1922923D2DE00A8F074 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053DA1912923D2DE00A8F074 /* AppDelegate.swift */; };
 		053DA1942923D2DE00A8F074 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053DA1932923D2DE00A8F074 /* SceneDelegate.swift */; };
 		053DA1962923D2DE00A8F074 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053DA1952923D2DE00A8F074 /* ViewController.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0523A1DB2928DAE800879250 /* RealmPokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPokemonModel.swift; sourceTree = "<group>"; };
+		0523A1DD2928DDE600879250 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		053DA18E2923D2DE00A8F074 /* Pokemons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokemons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		053DA1912923D2DE00A8F074 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		053DA1932923D2DE00A8F074 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +66,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0523A1DA2928DAD300879250 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				0523A1DB2928DAE800879250 /* RealmPokemonModel.swift */,
+				0523A1DD2928DDE600879250 /* RealmManager.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		053DA1852923D2DE00A8F074 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +96,7 @@
 		053DA1902923D2DE00A8F074 /* Pokemons */ = {
 			isa = PBXGroup;
 			children = (
+				0523A1DA2928DAD300879250 /* Realm */,
 				053DA1B22923F80E00A8F074 /* Models */,
 				053DA1AD2923EF1200A8F074 /* BackendAPI */,
 				053DA1A52923D6F400A8F074 /* Cell */,
@@ -262,6 +276,7 @@
 			files = (
 				053DA1962923D2DE00A8F074 /* ViewController.swift in Sources */,
 				053DA1A72923D71400A8F074 /* PokemonCell.swift in Sources */,
+				0523A1DE2928DDE600879250 /* RealmManager.swift in Sources */,
 				053DA1922923D2DE00A8F074 /* AppDelegate.swift in Sources */,
 				056B6CB32926542A002EC214 /* Extension.swift in Sources */,
 				053DA1942923D2DE00A8F074 /* SceneDelegate.swift in Sources */,
@@ -269,6 +284,7 @@
 				05FE34392925336100CDFC93 /* PokemonDetails.swift in Sources */,
 				053DA1B12923F5E000A8F074 /* NetworkManager.swift in Sources */,
 				053DA1B42923F84200A8F074 /* PokemonResults.swift in Sources */,
+				0523A1DC2928DAE800879250 /* RealmPokemonModel.swift in Sources */,
 				053DA1A92923DEEE00A8F074 /* PokemonDetailsVC.swift in Sources */,
 				053DA1AF2923EF5100A8F074 /* BackendAPI.swift in Sources */,
 				056B6CB12926442E002EC214 /* Types.swift in Sources */,

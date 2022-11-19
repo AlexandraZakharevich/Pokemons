@@ -7,5 +7,6 @@ target 'Pokemons' do
 
   pod 'Moya'
   pod 'Moya-ObjectMapper'
+  pod 'RealmSwift'
 
 end

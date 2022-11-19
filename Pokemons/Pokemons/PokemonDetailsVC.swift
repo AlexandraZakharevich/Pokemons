@@ -25,7 +25,7 @@ class PokemonDetailsVC: UIViewController {
         return label
     }()
     
-    private let typeLabel: UILabel = {
+    private let pokemonType: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
@@ -82,8 +82,8 @@ extension PokemonDetailsVC {
         else {return}
         pokemonImage.setImageFromUrl(imageURLString)
         pokemonName.text = "Name: \(name)"
-        typeLabel.text = "Type: \(types)"
-        pokemonWeight.text = "Weight: \(weight)  kg"
+        pokemonType.text = "Type: \(types)"
+        pokemonWeight.text = "Weight: \(weight) kg"
         pokemonHeight.text = "Height: \(height) cm"
     }
 }
@@ -92,7 +92,7 @@ private extension PokemonDetailsVC {
     func setupViews() {
         view.addSubview(pokemonImage)
         view.addSubview(pokemonName)
-        view.addSubview(typeLabel)
+        view.addSubview(pokemonType)
         view.addSubview(pokemonWeight)
         view.addSubview(pokemonHeight)
         view.addSubview(returnButton)
@@ -113,11 +113,11 @@ private extension PokemonDetailsVC {
             pokemonName.heightAnchor.constraint(equalToConstant: 30),
             pokemonName.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
-            typeLabel.topAnchor.constraint(equalTo: pokemonName.bottomAnchor, constant: 20),
-            typeLabel.heightAnchor.constraint(equalToConstant: 30),
-            typeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            pokemonType.topAnchor.constraint(equalTo: pokemonName.bottomAnchor, constant: 20),
+            pokemonType.heightAnchor.constraint(equalToConstant: 30),
+            pokemonType.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
-            pokemonWeight.topAnchor.constraint(equalTo: typeLabel.bottomAnchor, constant: 20),
+            pokemonWeight.topAnchor.constraint(equalTo: pokemonType.bottomAnchor, constant: 20),
             pokemonWeight.heightAnchor.constraint(equalToConstant: 30),
             pokemonWeight.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 

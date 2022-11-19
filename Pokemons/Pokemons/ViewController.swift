@@ -10,12 +10,17 @@ import UIKit
 class ViewController: UIViewController {
     
     var pokemonsName = [PokemonResults]()
-    var pokemonsDetails = [PokemonDetails]()
+//    var pokemonsDetails = [PokemonDetails]()
     
-    var limit = 5
-    var totalPokemons = 0
-    var index = 0
-    var displayPokemons: [PokemonResults] = Array()
+//    lazy var cachedDataSource: NSCache<AnyObject, UIImage> = {
+//        let cache = NSCache<AnyObject, UIImage>()
+//        return cache
+//    }()
+    
+//    var limit = 5
+//    var totalPokemons = 0
+//    var index = 0
+//    var displayPokemons: [PokemonResults] = Array()
     
     private let pokemonCell = "PokemonCell"
     private let pokemonsTableView: UITableView = {
@@ -25,6 +30,8 @@ class ViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+    var pokemonsNameFromRealm = RealmManager.read()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +40,8 @@ class ViewController: UIViewController {
         setDelegaties()
         
         pokemonsTableView.register(PokemonCell.self, forCellReuseIdentifier: pokemonCell)
-        
+        // Здесь сделать цикл проверки. Если имя уже есть - брать из бд, нет - делать запрос и сохранять в бд.
+        // Запрос имен покемонов для таблицы
         NetworkManager.getPokemonName { name in
             self.pokemonsName = name
             self.pokemonsTableView.reloadData()
@@ -125,6 +133,7 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailsVC = PokemonDetailsVC()
+        // Здесь сделать цикл проверки. Если вся инфа по покемону уже есть - брать из бд, нет - делать запрос и сохранять в бд.
         NetworkManager.getPokemonDetails(id: indexPath.row, success: { [weak self]  details  in
             self?.navigationController?.pushViewController(detailsVC, animated: true)
             detailsVC.setupDetails(details: details)
