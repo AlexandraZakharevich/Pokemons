@@ -10,12 +10,9 @@ import UIKit
 class ViewController: UIViewController {
     
     var pokemonsName = [PokemonResults]()
+    var realmPokemonNames = [RealmNameModel]()
+    var isConnected = true
 //    var pokemonsDetails = [PokemonDetails]()
-    
-//    lazy var cachedDataSource: NSCache<AnyObject, UIImage> = {
-//        let cache = NSCache<AnyObject, UIImage>()
-//        return cache
-//    }()
     
 //    var limit = 5
 //    var totalPokemons = 0
@@ -30,8 +27,6 @@ class ViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
-    var pokemonsNameFromRealm = RealmManager.read()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,17 +35,8 @@ class ViewController: UIViewController {
         setDelegaties()
         
         pokemonsTableView.register(PokemonCell.self, forCellReuseIdentifier: pokemonCell)
-        // Здесь сделать цикл проверки. Если имя уже есть - брать из бд, нет - делать запрос и сохранять в бд.
-        // Запрос имен покемонов для таблицы
-        NetworkManager.getPokemonName { name in
-            self.pokemonsName = name
-            self.pokemonsTableView.reloadData()
-            print("You get pokemons name")
-            
-        } failure: {
-            self.codeStatusIsInvalid()
-            print("You don't get pokemons name")
-        }
+        
+        setupName()
         
         // MARK - pagination
 //        totalPokemons = pokemonsName.count
@@ -80,6 +66,54 @@ private extension ViewController {
         self.present(alert, animated: true)
     }
     
+    func setupName() {
+        let isConnected  = NetworkMonitor.shared.isConnected
+        self.isConnected = isConnected
+        if isConnected {
+            getNamesFromAPI()
+        } else {
+            getNamesFromRealm()
+        }
+    }
+    
+    func getNamesFromAPI() {
+        NetworkManager.getPokemonName { name in
+            self.pokemonsName = name
+            self.setCache(pokemonsNames: name)
+            self.pokemonsTableView.reloadData()
+            print("You get pokemons name")
+            
+        } failure: {
+            self.codeStatusIsInvalid()
+            print("You don't get pokemons name")
+        }
+    }
+    
+    func getNamesFromRealm() {
+        realmPokemonNames = RealmManager.shared.readNames()
+    }
+    
+    func setCache(pokemonsNames: [PokemonResults]) {
+        let currentCacheArray = RealmManager.shared.readNames()
+        if !currentCacheArray.isEmpty{
+            var stringArray: [String] = []
+            for name in currentCacheArray {
+                stringArray.append(name.pokemonName)
+            }
+            for  name in pokemonsNames {
+                guard let name = name.name  else {return}
+                if  !stringArray.contains(name) {
+                    RealmManager.shared.saveNames(object: RealmNameModel(pokemonName: name))
+                }
+            }
+        } else {
+            for name in pokemonsNames {
+                guard let name = name.name  else {return}
+                RealmManager.shared.saveNames(object: RealmNameModel(pokemonName: name))
+            }
+        }
+    }
+    
     func setupConstraints() {
         NSLayoutConstraint.activate([
             pokemonsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -99,15 +133,23 @@ extension ViewController: UITableViewDelegate {
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pokemonsName.count
-//        return displayPokemons.count
+        if isConnected {
+            return pokemonsName.count
+        } else {
+            return realmPokemonNames.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: pokemonCell, for: indexPath) as! PokemonCell
-        cell.setupCell(name: pokemonsName[indexPath.row])
-        cell.selectionStyle = .none
-//        cell.setupCell(name: displayPokemons[indexPath.row])
+        if isConnected {
+            guard let name = pokemonsName[indexPath.row].name  else {return cell}
+            cell.setupCell(name: name)
+            cell.selectionStyle = .none
+        } else {
+            cell.setupCell(name: realmPokemonNames[indexPath.row].pokemonName)
+            cell.selectionStyle = .none
+        }
         return cell
     }
     

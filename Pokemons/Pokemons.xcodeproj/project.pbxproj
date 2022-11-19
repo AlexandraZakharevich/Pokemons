@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0523A1DC2928DAE800879250 /* RealmPokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523A1DB2928DAE800879250 /* RealmPokemonModel.swift */; };
 		0523A1DE2928DDE600879250 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523A1DD2928DDE600879250 /* RealmManager.swift */; };
+		0523A1E0292938B400879250 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523A1DF292938B400879250 /* NetworkMonitor.swift */; };
+		0523A1E22929484300879250 /* RealmNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523A1E12929484300879250 /* RealmNameModel.swift */; };
 		053DA1922923D2DE00A8F074 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053DA1912923D2DE00A8F074 /* AppDelegate.swift */; };
 		053DA1942923D2DE00A8F074 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053DA1932923D2DE00A8F074 /* SceneDelegate.swift */; };
 		053DA1962923D2DE00A8F074 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053DA1952923D2DE00A8F074 /* ViewController.swift */; };
@@ -31,6 +33,8 @@
 /* Begin PBXFileReference section */
 		0523A1DB2928DAE800879250 /* RealmPokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPokemonModel.swift; sourceTree = "<group>"; };
 		0523A1DD2928DDE600879250 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		0523A1DF292938B400879250 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		0523A1E12929484300879250 /* RealmNameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmNameModel.swift; sourceTree = "<group>"; };
 		053DA18E2923D2DE00A8F074 /* Pokemons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokemons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		053DA1912923D2DE00A8F074 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		053DA1932923D2DE00A8F074 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +75,8 @@
 			children = (
 				0523A1DB2928DAE800879250 /* RealmPokemonModel.swift */,
 				0523A1DD2928DDE600879250 /* RealmManager.swift */,
+				0523A1DF292938B400879250 /* NetworkMonitor.swift */,
+				0523A1E12929484300879250 /* RealmNameModel.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -275,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				053DA1962923D2DE00A8F074 /* ViewController.swift in Sources */,
+				0523A1E0292938B400879250 /* NetworkMonitor.swift in Sources */,
 				053DA1A72923D71400A8F074 /* PokemonCell.swift in Sources */,
 				0523A1DE2928DDE600879250 /* RealmManager.swift in Sources */,
 				053DA1922923D2DE00A8F074 /* AppDelegate.swift in Sources */,
@@ -289,6 +296,7 @@
 				053DA1AF2923EF5100A8F074 /* BackendAPI.swift in Sources */,
 				056B6CB12926442E002EC214 /* Types.swift in Sources */,
 				05F7D694292772A6006FB839 /* PokemonType.swift in Sources */,
+				0523A1E22929484300879250 /* RealmNameModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

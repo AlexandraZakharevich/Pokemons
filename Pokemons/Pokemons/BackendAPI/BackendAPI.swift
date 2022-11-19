@@ -23,7 +23,7 @@ extension BackendAPI: TargetType {
         case .getPokemonName:
             return "/api/v2/pokemon"
         case .getPokemonDetails(let id):
-            return "/api/v2/pokemon/\(id + 1)b"
+            return "/api/v2/pokemon/\(id + 1)"
         }
     }
     

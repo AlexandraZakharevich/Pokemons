@@ -30,7 +30,6 @@ class PokemonCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
-        let detailsVC = PokemonDetailsVC(nibName: String(describing: PokemonDetailsVC.self), bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -40,9 +39,8 @@ class PokemonCell: UITableViewCell {
 }
 
 extension PokemonCell {
-    func setupCell(name: PokemonResults) {
-        guard let name = name.name else {return}
-        pokemonNameLabel.text = "\(name)"
+    func setupCell(name: String) {
+        pokemonNameLabel.text = name
     }
 }
 

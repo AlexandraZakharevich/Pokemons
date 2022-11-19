@@ -9,32 +9,29 @@ import Foundation
 import RealmSwift
 
 class RealmManager {
-    private static let realm = try! Realm()
+    private let realm = try! Realm()
     
-//    static func startTransation() {
-//        realm.beginWrite()
-//    }
-//
-//    static func closeTransaction() {
-//         try? realm.commitWrite()
-//    }
-//
-//    class func read<T: Object>(type: T.Type) -> [T] {
-//        return Array(realm.objects(type.self))
-//    }
-//
-//    class func write<T: Object>(object: T) {
-//        try? realm.write({
-//            realm.add(object)
-//        })
-//    }
+    static let shared = RealmManager()
     
-    static func read() -> [RealmPokemonModel] {
+    private init(){}
+    
+    func read() -> [RealmPokemonModel] {
         let result = realm.objects(RealmPokemonModel.self)
         return Array(result)
     }
     
-    static func save(object: RealmPokemonModel) {
+    func save(object: RealmPokemonModel) {
+         try? realm.write {
+             realm.add(object)
+        }
+    }
+    
+    func readNames() -> [RealmNameModel] {
+        let result = realm.objects(RealmNameModel.self)
+        return Array(result)
+    }
+    
+    func saveNames(object: RealmNameModel) {
          try? realm.write {
              realm.add(object)
         }
