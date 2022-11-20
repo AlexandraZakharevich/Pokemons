@@ -138,8 +138,9 @@ class PokemonViewControllerView : UIView {
         addSubview(returnButton)
         NSLayoutConstraint.activate([
             returnButton.topAnchor.constraint(equalTo: pokemonHeightLabel.bottomAnchor, constant: 20),
-            returnButton.heightAnchor.constraint(equalToConstant: 30),
-            returnButton.centerXAnchor.constraint(equalTo: centerXAnchor)
+            returnButton.heightAnchor.constraint(equalToConstant: 50),
+            returnButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            returnButton.widthAnchor.constraint(equalToConstant: 200)
         ])
     }
     
