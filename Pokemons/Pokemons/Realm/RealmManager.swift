@@ -15,12 +15,12 @@ class RealmManager {
     
     private init(){}
     
-    func read() -> [RealmPokemonModel] {
+    func readPokemons() -> [RealmPokemonModel] {
         let result = realm.objects(RealmPokemonModel.self)
         return Array(result)
     }
     
-    func save(object: RealmPokemonModel) {
+    func savePokemons(object: RealmPokemonModel) {
          try? realm.write {
              realm.add(object)
         }

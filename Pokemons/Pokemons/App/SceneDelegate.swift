@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         
         let navVC = UINavigationController()
-        let viewController = ViewController()
+        let viewController = PokemonListViewController()
         navVC.viewControllers = [viewController]
         window?.rootViewController = navVC
 //        window?.rootViewController = UINavigationController(rootViewController: ViewController(nibName: String(describing: ViewController.self), bundle: nil))

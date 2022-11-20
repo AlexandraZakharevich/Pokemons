@@ -9,6 +9,7 @@ import UIKit
 
 class PokemonCell: UITableViewCell {
     
+    
     let pokemonNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
