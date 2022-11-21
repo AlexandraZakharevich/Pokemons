@@ -25,6 +25,7 @@ class PokemonViewController : UIViewController {
         PokemonConfigurator.shared.configure(view: self)
         setupTargets()
         presenter?.checkInternetConnection()
+        navigationItem.hidesBackButton = true
         
     }
     
@@ -48,7 +49,7 @@ class PokemonViewController : UIViewController {
               let imageURLString = pokemon.sprites?.front_default,
               let types = pokemon.types.first?.type?.name
         else {
-            let alert = UIAlertController(title: "Error", message: "Pokemon not cached", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error", message: "Pokémon not in cache", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default)
             alert.addAction(okAction)
             self.present(alert, animated: true)
@@ -102,7 +103,7 @@ extension PokemonViewController : PokemonViewProtocol {
     
     
 }
-//MARK: - objc методы
+//MARK: - objc метод
 extension PokemonViewController {
     @objc private func returnButtonWasPressed() {
         navigationController?.popViewController(animated: true)
