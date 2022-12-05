@@ -87,7 +87,7 @@ extension PokemonViewController : PokemonViewProtocol {
     }
     
     func showErrorMessage() {
-        let alert = UIAlertController(title: "Error", message: "Something went wrong!", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error", message: "Something went wrong!!", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
         self.present(alert, animated: true)

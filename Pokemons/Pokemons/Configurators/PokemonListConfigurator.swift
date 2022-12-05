@@ -11,12 +11,12 @@ protocol PokemonListConfiguratorProtocol {
 }
 
 class PokemonListConfigurator: PokemonListConfiguratorProtocol {
-    
+
     static let shared = PokemonListConfigurator()
-    
+
     func configure(view: PokemonListViewController) {
         let presenter = PokemonListPresenter(view: view)
         view.presenter = presenter
     }
-    
+
 }
